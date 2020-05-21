@@ -1,6 +1,6 @@
 const express = require('express')  
 var SerialPort = require('serialport');
-var arduinoport = new SerialPort('COM4', {baudRate: 9600});
+var arduinoport = new SerialPort('COM5', {baudRate: 9600});
 const SocketServer = require('ws').Server
 const Readline = require('@serialport/parser-readline')
 const port = 3000
@@ -8,15 +8,15 @@ const parser = new Readline()
 const server = express()
     .listen(port, () => console.log(`listening on ${port}`))
 const wss = new SocketServer({server})
-arduinoport.on('open',function() {
-    console.log('Serial Port ' + arduinoport + ' is opened.');
-  });
-  arduinoport.pipe(parser)
     wss.on ('connection', ws =>{
-        console.log('client connected')
-        parser.on('data', line =>{
-            console.log(line)  
+        console.log('client connected')  
     setTimeout(function() {
+        arduinoport.on('open',function() {
+            console.log('Serial Port ' + arduinoport + ' is opened.');
+          });
+          arduinoport.pipe(parser)
+        parser.on('data', line =>{
+            console.log(line)
         ws.send(line)//傳給client端serialport讀的到訊息
     },1000)
 })

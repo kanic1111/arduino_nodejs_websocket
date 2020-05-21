@@ -18,9 +18,7 @@ ws.onclose = () => {
 }
 
 ws.onmessage = message => {
-    console.log(message.data)//在終端顯示message裡的data欄位
-    // ws.addEventListener('message', function(e) {
-    //     var msg = JSON.parse(e.data);
-    //     console.log(msg)
-    //   })
+    setTimeout(function() {
+        console.log(message.data)
+    },1000)
     }
