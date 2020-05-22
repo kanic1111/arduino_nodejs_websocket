@@ -47,7 +47,7 @@ void loop(){
 ### nodejs程式
 
 #### websocket_server
-``` node.js=
+```javascript=
 const express = require('express')  
 var SerialPort = require('serialport');
 var arduinoport = new SerialPort('COM5', {baudRate: 9600});
@@ -91,7 +91,7 @@ const wss = new SocketServer({server})
   }) 
 ```
 #### websocket_client
-``` node.js=  
+```javascript=  
   //使用 WebSocket 的網址向 Server 開啟連結
 const WebSocket = require('ws');
 
@@ -118,7 +118,7 @@ ws.onmessage = message => {
     }
 ``` 
 #### 測試廣播的程式
-```  node.js=
+```javascript=
 //使用 WebSocket 的網址向 Server 開啟連結
 const WebSocket = require('ws');
 
